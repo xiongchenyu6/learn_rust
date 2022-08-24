@@ -1,4 +1,4 @@
-use std::alloc::{alloc, dealloc, ptr, Layout};
+use std::alloc::{alloc, dealloc, Layout};
 use std::ptr;
 
 #[cfg(test)]
@@ -49,53 +49,53 @@ impl Foo {
 //     }
 // }
 
-struct BugBox<T> {
-    d: *const T,
-    // _marker: std::marker::PhantomData<T>,
-}
-
-impl<T> BugBox<T> {
-    fn new(val: T) -> BugBox<T> {
-        let p = unsafe { alloc(Layout::new::<T>()) as *mut _ };
-        unsafe {
-            ptr::write(p, val);
-        }
-        BugBox {
-            d: p,
-            // _marker: Default::default(),
-        }
-    }
-}
-
-impl<T> Drop for BugBox<T> {
-    fn drop(&mut self) {
-        let d = unsafe { ptr::read(self.d) };
-        std::mem::drop(d);
-        unsafe {
-            dealloc(self.d as *mut _, Layout::new::<T>());
-        }
-    }
-}
-
-struct Safe1<'a>(&'a str, &'static str);
-
-unsafe impl<'a> Drop for Safe1<'a> {
-    fn drop(&mut self) {
-        println!("Safe1(_, {}) knows when *not* to inspect.", self.1);
-    }
-}
-
-struct SafeS<'a> {
-    b: Option<BugBox<Safe1<'a>>>,
-    s: String,
-}
+//struct BugBox<T> {
+//    d: *const T,
+//    // _marker: std::marker::PhantomData<T>,
+//}
+//
+//impl<T> BugBox<T> {
+//    fn new(val: T) -> BugBox<T> {
+//        let p = unsafe { alloc(Layout::new::<T>()) as *mut _ };
+//        unsafe {
+//            ptr::write(p, val);
+//        }
+//        BugBox {
+//            d: p,
+//            // _marker: Default::default(),
+//        }
+//    }
+//}
+//
+//impl<T> Drop for BugBox<T> {
+//    fn drop(&mut self) {
+//        let d = unsafe { ptr::read(self.d) };
+//        std::mem::drop(d);
+//        unsafe {
+//            dealloc(self.d as *mut _, Layout::new::<T>());
+//        }
+//    }
+//}
+//
+//struct Safe1<'a>(&'a str, &'static str);
+//
+//unsafe impl<'a> Drop for Safe1<'a> {
+//    fn drop(&mut self) {
+//        println!("Safe1(_, {}) knows when *not* to inspect.", self.1);
+//    }
+//}
+//
+//struct SafeS<'a> {
+//    b: Option<BugBox<Safe1<'a>>>,
+//    s: String,
+//}
 
 fn main() {
-    let mut ss = SafeS {
-        b: None,
-        s: "".to_string(),
-    };
-    ss.b = Some(BugBox::new(Safe1(&ss.s, "")));
+//    let mut ss = SafeS {
+//        b: None,
+//        s: "".to_string(),
+//    };
+   // ss.b = Some(BugBox::new(Safe1(&ss.s, "")));
 
     // Pancakes::hello_macro();
 

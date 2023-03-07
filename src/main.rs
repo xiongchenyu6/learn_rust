@@ -112,6 +112,8 @@ fn main() {
     while i > a {
         i -= 1;
         println!("{}", i);
+        println!("{}", input[i]);
+
         if is_op(&input[i]) {
             if j == 0 {
                 let arg1 = input[i + 1];
@@ -119,6 +121,7 @@ fn main() {
 
                 output[j] = arg1;
                 j += 1;
+                
 
                 output[j] = arg2;
                 j += 1;
@@ -129,6 +132,7 @@ fn main() {
                 let arg1 = input[i + 1];
 
                 output[j] = arg1;
+
                 j += 1;
 
                 output[j] = input[i];
@@ -139,5 +143,6 @@ fn main() {
     let mut foo = Foo;
     let loan = foo.mutate_and_share();
     println!("{:?}", loan);
+        
     foo.share();
 }

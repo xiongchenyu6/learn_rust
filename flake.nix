@@ -10,13 +10,18 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      # Use the same nixpkgs
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, crate2nix, flake-utils }:
+  outputs = { self, nixpkgs, crate2nix, flake-utils, gitignore }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-
+        inherit (gitignore.lib) gitignoreSource;
         # DON'T FORGET TO PUT YOUR PACKAGE NAME HERE, REMOVING `throw`
         crateName = "learn_rust";
 
@@ -25,7 +30,7 @@
 
         project = import (generatedCargoNix {
           name = crateName;
-          src = ./.;
+          src = gitignoreSource ./.;
         }) {
           inherit pkgs;
           defaultCrateOverrides = pkgs.defaultCrateOverrides // {
@@ -39,8 +44,17 @@
         defaultPackage = self.packages.${system}.${crateName};
 
         devShell = pkgs.mkShell {
-          inputsFrom = builtins.attrValues self.packages.${system};
-          buildInputs = [ pkgs.cargo pkgs.rust-analyzer pkgs.clippy ];
+          XX = 1;
+          #inputsFrom = builtins.attrValues self.packages.${system};
+          buildInputs = [
+            pkgs.rustc
+            pkgs.cargo
+            pkgs.rust-analyzer
+            pkgs.clippy
+            pkgs.openssl
+          ];
+          nativeBuildInputs = [ pkgs.pkg-config ];
+
         };
       });
 }

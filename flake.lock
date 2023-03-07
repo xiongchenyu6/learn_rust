@@ -3,11 +3,11 @@
     "crate2nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1661733066,
-        "narHash": "sha256-L7Fs9bEST7v07E8Zovd3O6ZtmBwNveglJq6bXhBZbgE=",
+        "lastModified": 1668385420,
+        "narHash": "sha256-Kn+RvHy/YlFv/mj6yFqy+057qUZDvoJh4BOC+RXGEUE=",
         "owner": "kolloch",
         "repo": "crate2nix",
-        "rev": "198de9f237cb97ad32e0da7fb914b8e8d9fd87b7",
+        "rev": "ca2aef6de460a428e79d3920150fbe74aca87fdc",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
         "type": "github"
       },
       "original": {
@@ -31,13 +31,33 @@
         "type": "github"
       }
     },
+    "gitignore": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1660459072,
+        "narHash": "sha256-8DFJjXG8zqoONA1vXtgeKXy68KdJL5UaXR8NtVMUbx8=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "a20de23b925fd8264fd7fad6454652e142fd7f73",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1662299586,
-        "narHash": "sha256-0zcDRe9eCcHfU7OQiuOZhu5LQR9C9u3XQR/dCJATGu8=",
+        "lastModified": 1668956794,
+        "narHash": "sha256-rqEuA7mbuDYVG8KF+pya4aVypzJIJrC5+E7niUYDM40=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5518e6aba11f50f0953fa21c7ad6a283c4741b95",
+        "rev": "5a880f0356cbc4a7253a0f42af3a729024f83995",
         "type": "github"
       },
       "original": {
@@ -50,6 +70,7 @@
       "inputs": {
         "crate2nix": "crate2nix",
         "flake-utils": "flake-utils",
+        "gitignore": "gitignore",
         "nixpkgs": "nixpkgs"
       }
     }

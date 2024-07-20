@@ -1,5 +1,3 @@
-use std::alloc::{alloc, dealloc, Layout};
-use std::ptr;
 
 #[cfg(test)]
 mod tests {

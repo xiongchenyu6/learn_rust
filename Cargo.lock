@@ -483,8 +483,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "learn_rust"
-version = "0.1.1"
+name = "learn_rust_xxx"
+version = "0.1.2"
 dependencies = [
  "reqwest",
  "scraper",

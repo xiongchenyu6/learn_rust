@@ -12,4 +12,4 @@ repository = "https://github.com/xiongchenyu6/learn_rust"
 
 [dependencies]
 reqwest = "0.11.13"
-scraper = "0.13.0"
+scraper = "0.19.1"

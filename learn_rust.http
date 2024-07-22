@@ -1,0 +1,10 @@
+@baseUrl = localhost:8000
+
+# todo
+POST http://{{{{baseUrl}}}}/todo
+Content-Type: application/json
+
+{
+  "description": "Learn Rust",
+  "complete": false
+}
